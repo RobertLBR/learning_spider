@@ -1,3 +1,6 @@
+"""
+使用代理采集人民电邮出版社的书单
+"""
 import requests
 import json
 
@@ -21,6 +24,3 @@ for new in news:
     author = new['author']
     price = new['price']
     print("书名：", bookName, '\n', "作者：", author, '\n', "价格：", price, '\n')
-
-
-
