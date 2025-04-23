@@ -18,7 +18,7 @@ driver = webdriver.Remote(
 
 try:
     # 访问网址
-    driver.get('https://jd.com/')
+    driver.get('https://www.toutiao.com/article/7494114336392102410/?log_from=54d997546a966_1745399647350')
 
     # 等待页面加载（可根据需要调整等待时间）
     driver.implicitly_wait(10)
