@@ -19,7 +19,7 @@ driver = webdriver.Remote(
 )
 
 try:
-    driver.get("https://www.toutiao.com/article/7495991159136748044")
+    driver.get("https://www.toutiao.com/article/7494114336392102410")
     content_element = WebDriverWait(driver, 30).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, ".article-content"))
     )
