@@ -15,6 +15,8 @@ def extract_content_from_html(html_content):
     text = soup.get_text(separator='\n', strip=True)
     text = html.unescape(text)
     text = re.sub(r'\n\s*\n', '\n\n', text)
+    nav_keywords = r'网页|新闻|贴吧|知道|网盘|图片|视频|地图|文库|资讯|采购|百科|百度首页|登录|注册|进入词条|全站搜索|帮助|播报|编辑|讨论|\d+\+|收藏|赞|首页'
+    text = re.sub(rf'^{nav_keywords}$', '', text, flags=re.MULTILINE)
     return text.strip()
 
 

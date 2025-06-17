@@ -1,4 +1,4 @@
-# 导入Selenium相关模块
+# 查看今日头条的网页信息
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -14,6 +14,7 @@ options.add_argument("--disable-blink-features=AutomationControlled")  # 禁用B
 
 # 配置远程WebDriver连接地址（通常是Selenium Grid或Docker容器地址）
 remote_url = "http://172.16.101.252:4444/wd/hub"  # 注意必须包含/wd/hub后缀
+# remote_url = "https://dev:31uKJdwoyvVjSTBD@ai.guide-rank.com:14444/wd/hub"
 
 # 初始化远程WebDriver（支持分布式测试）
 driver = webdriver.Remote(
