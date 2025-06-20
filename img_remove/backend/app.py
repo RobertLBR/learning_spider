@@ -23,6 +23,9 @@ CORS(app)  # 启用CORS支持
 # 记录应用启动时间
 app.config['START_TIME'] = time.time()
 
+# 允许的文件扩展名
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+
 # 应用配置
 app.config.update(
     MAX_CONTENT_LENGTH=10 * 1024 * 1024,  # 限制上传文件大小为10MB
@@ -53,9 +56,6 @@ UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
     logger.info(f"创建临时目录: {UPLOAD_FOLDER}")
-
-# 允许的文件扩展名
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
 def allowed_file(filename):
     return '.' in filename and \
