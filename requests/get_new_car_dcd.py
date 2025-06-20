@@ -1,7 +1,7 @@
 import requests
 import json
 from bs4 import BeautifulSoup
-
+from  datetime import datetime
 
 def scrape_new_cars():
     url = "https://www.dongchedi.com/newcar"
@@ -56,6 +56,10 @@ def scrape_new_cars():
 
 if __name__ == "__main__":
     cars = scrape_new_cars()
-    # print(cars)
-    for i, car in enumerate(cars, 1):
-        print(f"{i}. {car['name']} | 价格: {car['price']} | 发布日期: {car['publish_date']}")
+    # 数据统计
+    day_str = datetime.now().strftime("%Y-%m-%d")
+
+    print(f"截至至：{day_str} 新出车型数量：{len(cars)}")
+
+    for car in cars:
+        print(f"日期: {car['publish_date']} 车型：{car['name']} 售价: {car['price']}")
