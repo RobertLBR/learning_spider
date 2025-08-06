@@ -1,0 +1,35 @@
+{
+  "code": 0,
+  "data": {
+    "output": [
+      {
+        "category_id": "15972239851503828496",
+        "category_name": "折叠屏手机",
+        "price": 7999,
+        "product_name": "vivo X Fold5",
+        "publish_date": "2025-07-29"
+      },
+      {
+        "category_id": "14893893411517414535",
+        "category_name": "旗舰手机",
+        "price": 8999,
+        "product_name": "荣耀Magic V5",
+        "publish_date": "2025-07-29"
+      },
+      {
+        "category_id": "14901699881521428094",
+        "category_name": "千元手机",
+        "price": 1599,
+        "product_name": "WIKO Hi畅享 80 Pro",
+        "publish_date": "2025-07-29"
+      }
+    ]
+  },
+  "debug_url": "https://www.coze.cn/work_flow?execute_id=7535004331801051179&space_id=7491201680789995571&workflow_id=7520067895263871026&execute_mode=2",
+  "msg": "Success",
+  "usage": {
+    "input_count": 2526,
+    "output_count": 2028,
+    "token_count": 4554
+    }
+  }

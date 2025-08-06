@@ -1,3 +1,4 @@
 bg_remove/frontend/node_modules
 bg_remove/backend/temp
 bg_remove/start.log
+.venv
