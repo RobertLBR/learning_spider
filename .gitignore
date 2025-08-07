@@ -2,6 +2,7 @@ bg_remove/frontend/node_modules
 bg_remove/backend/temp
 bg_remove/start.log
 .venv
+.env
 .idea   
 .bgRemove.lock
 bg_remove/badges/*

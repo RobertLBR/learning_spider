@@ -1,12 +1,7 @@
 import requests
 import json
-
-# 公共配置
-headers = {
-    "Authorization": "Bearer pat_67jA7gGJVaTfPPCG6v8303HtGh3wA6fG1Eml0PYDUqZ9ekuQVk8QNXY6EaNvn9dL",
-    "Content-Type": "application/json"
-}
-base_url = "https://api.coze.cn/v1/workflow/run"
+from dotenv import load_dotenv
+import os
 
 
 def call_workflow(workflow_id, parameters=None):
@@ -21,10 +16,10 @@ def call_workflow(workflow_id, parameters=None):
     result = response.json()
 
     # 处理嵌套的JSON字符串
-    if 'data' in result:
-        result['data'] = json.loads(result['data'])
-        if 'data' in result['data']:
-            result['data']['data'] = json.loads(result['data']['data'])
+    # if 'data' in result:
+    #     result['data'] = json.loads(result['data'])
+    #     if 'data' in result['data']:
+    #         result['data']['data'] = json.loads(result['data']['data'])
 
     return result
 
@@ -56,17 +51,30 @@ def get_phone_ranking(product_name, category_id):
 
 # 示例调用
 if __name__ == "__main__":
+
+    # 加载环境变量
+    load_dotenv()
+
+    # 公共配置
+    headers = {
+        "Authorization": os.getenv('API_TOKEN'),
+        "Content-Type": "application/json"
+    }
+
+    base_url = "https://api.coze.cn/v1/workflow/run"
+
     # 1. 获取最新手机列表
-    print("获取最新手机列表:")
-    latest_phones = get_latest_phones()
-    print(json.dumps(latest_phones, indent=2, ensure_ascii=False))
+    # print("获取最新手机列表:")
+    # latest_phones = get_latest_phones()
+    # print(json.dumps(latest_phones, indent=2, ensure_ascii=False))
 
     # 2. 手机分析报告 (示例使用"努比亚红魔10S Pro")
     print("\n手机分析报告:")
     analysis = analyze_phone("努比亚红魔10S Pro")
-    print(json.dumps(analysis, indent=2, ensure_ascii=False))
+    # print(json.dumps(analysis, indent=2, ensure_ascii=False))
+    print(analysis)
 
-    # 3. 手机排名 (示例使用"努比亚红魔10S Pro"和指定categoryId)
-    print("\n手机排名:")
-    ranking = get_phone_ranking("努比亚红魔10S Pro", "15972230251503555196")
-    print(json.dumps(ranking, indent=2, ensure_ascii=False))
+    # # 3. 手机排名 (示例使用"努比亚红魔10S Pro"和指定categoryId)
+    # print("\n手机排名:")
+    # ranking = get_phone_ranking("努比亚红魔10S Pro", "15972230251503555196")
+    # print(json.dumps(ranking, indent=2, ensure_ascii=False))
