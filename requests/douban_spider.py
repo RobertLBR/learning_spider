@@ -13,9 +13,9 @@ def get_page_info(url):
     }
 
     #获取页面数据
-    resp = requests.get(url,headers=headers).text
-    status_code = requests.get(url, headers=headers).status_code
-    print(status_code)
+    res = requests.get(url,headers=headers)
+    res.raise_for_status()
+    resp = res.text
     return resp
 
 
