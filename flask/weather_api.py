@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 import requests
 from bs4 import BeautifulSoup
+import json
 
 app = Flask(__name__)
 
@@ -15,15 +16,19 @@ def weather():
     response = requests.get(url=url, headers=headers)
     response.encoding = "utf-8"
 
+    # 格式化数据
     soup = BeautifulSoup(response.text, 'lxml')
 
+    # 提取广州天气数据
     clearfix = soup.find_all('ul', class_="clearfix")
     weather_info = clearfix[1]
 
+    # 提取广州天气指标
     h1 = weather_info.find_all('h1')
     tem = weather_info.find_all('p', class_="tem")
     wea = weather_info.find_all('p', class_="wea")
 
+    # 把指标数据组装成字典
     gz_weather = {
         "daytime": h1[0].text,
         "daytime_tem": tem[0].text.replace('\n', ''),
@@ -33,13 +38,15 @@ def weather():
         "nighttime_wea": wea[1].text,
     }
 
-    response = jsonify(gz_weather)  # 自动序列化，ensure_ascii=False生效
-    response.headers['Content-Type'] = 'application/json; charset=utf-8'  # 指定编码[1,3](@ref)
-    return response
-
+    # 以JSON格式返回结果，防止中文乱码
+    return (
+        json.dumps(gz_weather, ensure_ascii=False),
+        200,
+        {'Content-Type': 'application/json; charset=utf-8'}
+        )
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=8088,debug=True)
+    app.run(host='0.0.0.0',port=8081,debug=True)
 
 
 
