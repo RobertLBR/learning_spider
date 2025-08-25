@@ -1,0 +1,72 @@
+pipeline {
+    agent any  // 在任何可用节点运行（要求该节点已预装 Docker 和 JDK）
+
+    environment {
+        // 私有仓库地址
+        REGISTRY   = "172.16.100.50:5000"
+        IMAGE_NAME = "weather_api"
+        IMAGE_TAG  = "v1"
+    }
+
+    stages {
+        // 阶段 1：拉取最新代码
+        stage('Git Pull Code') {
+            steps {
+                // 使用 git 命令拉取 main 分支最新代码
+                // reset --hard 确保代码是干净状态
+                sh 'git checkout main && git reset --hard && git pull'
+            }
+        }
+
+        // 阶段 2：构建并标记 Docker 镜像
+        stage('Docker Build & Tag') {
+            steps {
+                // 进入 flask 目录后再执行 docker build
+                dir('flask') {
+                    script {
+                        // docker.build(镜像名:tag, 构建上下文)
+                        // --file 指定 Dockerfile 名称
+                        docker.build(
+                            "${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}",
+                            "--file Dockerfile ."
+                        )
+                    }
+                }
+            }
+        }
+
+        // 阶段 3：推送镜像到私有仓库
+        stage('Docker Push') {
+            steps {
+                script {
+                    // 将构建好的镜像推送到私有仓库
+                    docker.image("${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}").push()
+                }
+            }
+        }
+
+        // 阶段 4：远程发布项目
+        stage('Docker Run') {
+
+            steps {
+                sh '''
+                # 远程发布项目
+                ssh -o StrictHostKeyChecking=no webedit@172.16.101.252 "
+                  docker rm -f weather_api || true &&
+                  docker run -d --name weather_api \
+                    -p 8081:8081 \
+                    172.16.100.50:5000/weather_api:v1
+                "
+                '''
+            }
+        }
+    }
+
+    // 构建后处理，无论成功失败都会执行
+    post {
+        always {
+            // 删除本地镜像，避免 Jenkins 节点磁盘被占满
+            sh "docker rmi ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} || true"
+        }
+    }
+}
