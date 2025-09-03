@@ -1,0 +1,66 @@
+[
+  {
+    "series_name": "普曼VLS",
+    "price": "118.00-168.80",
+    "online_date": "9月2日",
+    "tags": [
+      "全新车系"
+    ]
+  },
+  {
+    "series_name": "宝马5系",
+    "price": "43.99-52.59",
+    "online_date": "9月2日",
+    "tags": [
+      "小改款"
+    ]
+  },
+  {
+    "series_name": "宝马i5",
+    "price": "43.99-53.99",
+    "online_date": "9月2日",
+    "tags": [
+      "小改款"
+    ]
+  },
+  {
+    "series_name": "睿行EM60",
+    "price": "6.69-17.29",
+    "online_date": "9月1日",
+    "tags": [
+      "新增车型"
+    ]
+  },
+  {
+    "series_name": "菱智新能源",
+    "price": "10.98-19.69",
+    "online_date": "9月1日",
+    "tags": [
+      "新增车型"
+    ]
+  },
+  {
+    "series_name": "克蒂昆仑",
+    "price": "52.99-52.99",
+    "online_date": "9月1日",
+    "tags": [
+      "全新车系"
+    ]
+  },
+  {
+    "series_name": "Lorinser LS系列",
+    "price": "85.90-148.80",
+    "online_date": "9月1日",
+    "tags": [
+      "新增车型"
+    ]
+  },
+  {
+    "series_name": "SKY EV01",
+    "price": "14.99-16.99",
+    "online_date": "9月1日",
+    "tags": [
+      "新增车型"
+    ]
+  }
+]
