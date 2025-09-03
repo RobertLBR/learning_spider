@@ -3,6 +3,8 @@ import pymongo
 import pandas as pd
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
+import os
+from dotenv import load_dotenv
 
 def mongo_output():
     try:
@@ -39,8 +41,11 @@ def mongo_output():
         print(result.describe())
         print(result.sort_values('avgPrice', ascending=False).head(10))
 
+        # 
         # # save to ES
-        # es = Elasticsearch(['http://elastic:x2ZaY8pc6LN55kA4M08b00KJ@192.168.150.101:30200'])
+        # # 加载环境变量
+        # load_dotenv()
+        # es = Elasticsearch([os.getenv("ES_URL")])
         #
         # actions = []
         # for i in range(len(result)):

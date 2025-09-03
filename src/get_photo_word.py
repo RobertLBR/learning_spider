@@ -5,11 +5,16 @@ from aip import AipOcr
 import re
 import importlib
 import sys
+import os
+from dotenv import load_dotenv
 
-#百度AI申请的文字识别API信息
-APP_ID = "18552774"
-API_KEY = "AGqUDVhME3jqdbOnrNWqQZDy"
-SERCRET_KEY = "ZvoOM83upxZbcrZ0KuTRC1XFXr7M71j7"
+# 加载环境变量
+load_dotenv()
+
+# 百度AI申请的文字识别API信息
+APP_ID = os.getenv("BAIDU_APP_ID")
+API_KEY = os.getenv("BAIDU_API_KEY")
+SERCRET_KEY = os.getenv("BAIDU_SERCRET_KEY")
 
 #加载API信息
 client = AipOcr(APP_ID,API_KEY,SERCRET_KEY)

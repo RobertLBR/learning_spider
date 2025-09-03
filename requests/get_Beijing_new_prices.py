@@ -4,8 +4,10 @@ import requests
 import re
 import time
 import pandas as pd
-# from elasticsearch import Elasticsearch
-# from elasticsearch import helpers
+import os
+from
+from elasticsearch import Elasticsearch
+from elasticsearch import helpers
 
 
 def get_price_data(page):
@@ -71,7 +73,7 @@ def get_price_data(page):
 
 
 def save_to_es(result):
-    es = Elasticsearch(['http://elastic:x2ZaY8pc6LN55kA4M08b00KJ@192.168.150.101:30200'])
+    es = Elasticsearch([os.getenv("ES_URL")])
     print(result.info())
 
     actions = []

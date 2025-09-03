@@ -7,3 +7,4 @@ bg_remove/start.log
 bg_remove/badges/*
 bg_remove/.env.example
 db/__pycache__
+db/config.py

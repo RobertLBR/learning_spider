@@ -1,12 +1,18 @@
 #coding=utf-8
 # 模拟登陆
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # 会话
 session = requests.session()
 data = {
-    "loginName": "13710706352",
-    "password": "robert123"
+    "loginName": os.getenv("LOGIN"),
+    "password": os.getenv("PASS_PWD"),
+
+    "rememberMe": "true"
 }
 
 # 登陆

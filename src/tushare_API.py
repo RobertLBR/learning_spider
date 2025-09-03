@@ -4,6 +4,8 @@ import tushare as ts
 import pandas as pd
 import datetime
 import matplotlib.pyplot as plt
+import os
+from dotenv import load_dotenv
 
 def main(stock_name):
     # 日期定义
@@ -12,8 +14,12 @@ def main(stock_name):
     to_day = this_day.strftime("%Y%m%d")
     last_day = last_month_today.strftime("%Y%m%d")
 
+    # 加载环境变量
+
+    load_dotenv()
+
     # 调用 tushare pro 接口
-    pro = ts.pro_api('ccd3972969331090c42064d212162485aa283b80a4925101576ac146')
+    pro = os.getenv("TS_PRO_API_KEY")
 
     # 获取个股信息
     data = pro.stock_basic(name=stock_name, list_status='L', fields='ts_code,symbol,name,area,industry,list_date')
